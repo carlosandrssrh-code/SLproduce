@@ -58,7 +58,7 @@ async function getIsolveData() {
 }
 
 // ─── INICIALIZAR BASE DE DATOS ───────────────────────────
-/*async function initDB() {
+async function initDB() {
   try {
     await pg.query(`
       CREATE TABLE IF NOT EXISTS usuarios (
@@ -108,18 +108,7 @@ async function getIsolveData() {
         pdf_datos JSONB,
         created_at TIMESTAMP DEFAULT NOW()
       );
-    `); */
-
-    async function initDB() {
-        try {
-          await sql.connect(sqlConfig);
-          console.log("✅ Conectado a Azure SQL");
-        } catch (err) {
-          console.error("❌ Error DB:", err.message);
-        }
-      };
-      
-      initDB();
+    `);
     
     const adminExists = await pg.query("SELECT id FROM usuarios WHERE username = 'admin'");
     if (adminExists.rows.length === 0) {
