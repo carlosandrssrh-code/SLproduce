@@ -440,12 +440,19 @@ app.get('/api/health', (req, res) => {
 
 // ─── ARRANCAR ────────────────────────────────────────────
 const PORT = process.env.PORT || 3001;
-app.listen(PORT, async () => {
-  console.log('Backend SL Produce corriendo en puerto ' + PORT);
+
+const startServer = async () => {
   try {
-    await getPool();
-    console.log('Conectado a Azure SQL correctamente');
+    await getPool(); // conectar primero
+    console.log('✅ Conectado a Azure SQL correctamente');
+
+    app.listen(PORT, () => {
+      console.log('🚀 Backend SL Produce corriendo en puerto ' + PORT);
+    });
+
   } catch (e) {
-    console.error('Error conectando a Azure SQL:', e.message);
+    console.error('❌ Error conectando a Azure SQL:', e.message);
   }
-});
+};
+
+startServer();
