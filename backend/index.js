@@ -1,8 +1,3 @@
-
-app.get('/', (req, res) => {
-  res.send('API funcionando');
-});
-
 const express = require('express');
 const sql     = require('mssql');
 const cors    = require('cors');
